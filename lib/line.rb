@@ -1,3 +1,5 @@
+require_relative 'station'
+
 # Subway System Rail line
 class Line
   attr_reader :name
@@ -8,12 +10,12 @@ class Line
   end
 
   def calculate_stops(end_station, start_station)
-    (stops_from_park(end_station) - stops_from_park(start_station)).abs
+    stops_from_park(end_station) + stops_from_park(start_station)
   end
 
   def add_station(station)
     @stations << station
-    station.name == 'park' &&  @park_station_index = @stations.length
+    station.name == 'park' &&  @park_station_index = @stations.length - 1
   end
 
   def find_station_by_name(name)
@@ -27,6 +29,6 @@ class Line
     @stations.each_index do |i|
       stop_num = i if station.name == @stations[i].name
     end
-    stop_num - @park_station_index
+    (stop_num - @park_station_index).abs
   end
 end

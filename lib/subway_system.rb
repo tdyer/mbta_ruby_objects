@@ -1,3 +1,5 @@
+require_relative 'line'
+
 # A Subway system with multiple lines.
 # Can be used for most city subway systems, MBTA in Boston, MTA in NYC, ...
 class SubwaySystem
@@ -37,15 +39,15 @@ class SubwaySystem
       eline.calculate_stops(estation, sstation)
     else
       # different lines for start and stop stations
-      (sline.stops_from_park(sstation) - eline.stops_from_park(estation)).abs
+      sline.stops_from_park(sstation) + eline.stops_from_park(estation)
     end
   end
-
-  private
 
   def find_line_by_name(name)
     @lines.select { |line| line.name == name }[0]
   end
+
+  private
 
   def add_line(line)
     @lines << line
