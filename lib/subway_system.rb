@@ -1,7 +1,8 @@
+# A Subway system with multiple lines.
+# Can be used for most city subway systems, MBTA in Boston, MTA in NYC, ...
 class SubwaySystem
   attr_reader :name, :city
 
-  # two argument/parameters for name and city
   def initialize(name, city)
     @name = name
     @city = city
@@ -9,7 +10,7 @@ class SubwaySystem
   end
 
   def find_line_by_name(name)
-    @lines.select{ |line| line.name == name}[0]
+    @lines.select { |line| line.name == name }[0]
   end
 
   def add_line(line)
@@ -22,20 +23,17 @@ class SubwaySystem
       station = Station.new(sname)
       line.add_station(station)
     end
-    self.add_line(line)
+    add_line(line)
   end
 
+  # Calculate the number of stops given a
+  # starting line and station and an ending line and station.
   def calculate_stops(sstation, sline, estation, eline)
-    # Logic to calculate number of stops
-
-    if(sline == eline)
+    if (sline == eline)
       # same line for start and stop
-      # absolute(end station index - start station index)
-      number_of_stops = eline.calculate_stops(estation, sstation)
+      eline.calculate_stops(estation, sstation)
     else
-      number_of_stops = (sline.stops_from_park(sstation) - eline.stops_from_park(estation)).abs
-      # raise "hey we haven't calculated number of stops between lines yet!!!!"
+      (sline.stops_from_park(sstation) - eline.stops_from_park(estation)).abs
     end
   end
-
 end
