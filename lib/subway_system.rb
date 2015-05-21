@@ -28,7 +28,13 @@ class SubwaySystem
 
   # Calculate the number of stops given a
   # starting line and station and an ending line and station.
-  def calculate_stops(sstation, sline, estation, eline)
+  def calculate_stops(sstation_name, sline_name, estation_name, eline_name)
+    sline = find_line_by_name(sline_name)
+    sstation = sline.find_station_by_name(sstation_name)
+
+    eline = find_line_by_name(eline_name)
+    estation = eline.find_station_by_name(estation_name)
+
     if (sline == eline)
       # same line for start and stop
       eline.calculate_stops(estation, sstation)

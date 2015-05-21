@@ -25,44 +25,23 @@ mbta.create_line('orange',
 
 ####### Test 1 #############
 # Green Line, haymarket to bolyston, easy on the same line
-start_line = mbta.find_line_by_name('green')
-end_line = mbta.find_line_by_name('green')
-
-start_station = start_line.find_station_by_name('haymarket')
-end_station = end_line.find_station_by_name('bolyston')
-
-num_of_stops = mbta.calculate_stops(start_station, start_line,
-                                    end_station, end_line)
+num_of_stops = mbta.calculate_stops('haymarket', 'green', 'bolyston', 'green')
 puts "number of stops from haymarket to bolyston is #{num_of_stops}"
 
 ####### Test 2 #############
 # Green Line, bolyston to haymarket, easy on the same line
-start_station = start_line.find_station_by_name('bolyston')
-end_station = end_line.find_station_by_name('haymarket')
-
-num_of_stops = mbta.calculate_stops(start_station, start_line,
-                                    end_station, end_line)
+num_of_stops = mbta.calculate_stops('bolyston', 'green', 'haymarket', 'green')
 puts "number of stops from bolyston to haymarket is #{num_of_stops}"
 
 ####### Test 3 #############
 # Green Line and Red Line
 # haymarket to alewife
-end_line = mbta.find_line_by_name('red')
 
-start_station = start_line.find_station_by_name('haymarket')
-end_station = end_line.find_station_by_name('alewife')
-
-num_of_stops = mbta.calculate_stops(start_station, start_line,
-                                    end_station, end_line)
+num_of_stops = mbta.calculate_stops('haymarket', 'green', 'alewife', 'red')
 puts "number of stops from haymarket to alewife is #{num_of_stops}"
 
 ####### Test 4 #############
 # alewife to haymarket
-start_line = mbta.find_line_by_name('red')
-end_line = mbta.find_line_by_name('green')
-start_station = start_line.find_station_by_name('alewife')
-end_station = end_line.find_station_by_name('haymarket')
 
-num_of_stops = mbta.calculate_stops(start_station, start_line,
-                                    end_station, end_line)
+num_of_stops = mbta.calculate_stops('alewife', 'red', 'haymarket', 'green')
 puts "number of stops from alewife to haymarket is #{num_of_stops}"
