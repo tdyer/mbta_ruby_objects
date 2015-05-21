@@ -1,6 +1,4 @@
 require 'pry'
-require_relative '../lib/station'
-require_relative '../lib/line'
 require_relative '../lib/subway_system'
 
 ####### Setup #############
